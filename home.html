@@ -1,44 +1,18 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+<script src="themes32.js?v=32"></script>
 <meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>الرئيسية - Omar PRO v28 - احترافية عالمية مربوطة</title>
-<script src="themes.js?v=28"></script>
-<script>
-// Omar PRO v28 INLINE - مربوط - لا يلعب في أي حاجة تاني - بس ثيم
-(function(){
-  window.themes = window.themes || {
-    light:{'--bg':'#f8fafc','--bg-soft':'#f1f5f9','--card':'#ffffff','--card-border':'#e2e8f0','--text':'#0f172a','--text-soft':'#64748b','--hero':'#0f172a','--hero-soft':'#334155','--gradient':'linear-gradient(135deg,#0f172a,#334155)'},
-    dark:{'--bg':'#0f172a','--bg-soft':'#1e293b','--card':'#1e293b','--card-border':'#334155','--text':'#f1f5f9','--text-soft':'#94a3b8','--hero':'#38bdf8','--hero-soft':'#0ea5e9','--gradient':'linear-gradient(135deg,#38bdf8,#0ea5e9)'},
-    forest:{'--bg':'#f0fdf4','--bg-soft':'#dcfce7','--card':'#ffffff','--card-border':'#bbf7d0','--text':'#14532d','--text-soft':'#15803d','--hero':'#16a34a','--hero-soft':'#15803d','--gradient':'linear-gradient(135deg,#16a34a,#15803d)'},
-    material:{'--bg':'#121212','--bg-soft':'#1e1e1e','--card':'#1e1e1e','--card-border':'#2c2c2c','--text':'#e0e0e0','--text-soft':'#9e9e9e','--hero':'#bb86fc','--hero-soft':'#9c64e0','--gradient':'linear-gradient(135deg,#bb86fc,#9c64e0)'},
-    ocean:{'--bg':'#f0f9ff','--bg-soft':'#e0f2fe','--card':'#ffffff','--card-border':'#bae6fd','--text':'#0c4a6e','--text-soft':'#0284c7','--hero':'#0284c7','--hero-soft':'#0369a1','--gradient':'linear-gradient(135deg,#0284c7,#0ea5e9)'},
-    rose:{'--bg':'#fff1f2','--bg-soft':'#ffe4e6','--card':'#ffffff','--card-border':'#fecdd3','--text':'#4c0519','--text-soft':'#be123c','--hero':'#e11d48','--hero-soft':'#be123c','--gradient':'linear-gradient(135deg,#e11d48,#f43f5e)'},
-    midnight:{'--bg':'#020617','--bg-soft':'#0f172a','--card':'#0f172a','--card-border':'#1e293b','--text':'#f8fafc','--text-soft':'#94a3b8','--hero':'#6366f1','--hero-soft':'#4f46e5','--gradient':'linear-gradient(135deg,#6366f1,#8b5cf6)'},
-    everforest:{'--bg':'#fdf6e3','--bg-soft':'#f4e8c1','--card':'#ffffff','--card-border':'#e6d5a8','--text':'#2d353b','--text-soft':'#5a6c5a','--hero':'#5a8f6b','--hero-soft':'#4a7a5a','--gradient':'linear-gradient(135deg,#5a8f6b,#a7c080)'}
-  };
-  window.applyTheme = function(name){
-    try{
-      var th = window.themes[name] || window.themes['forest'];
-      var r = document.documentElement;
-      for(var k in th){ if(th.hasOwnProperty(k)){ r.style.setProperty(k, th[k]); } }
-      try{ document.body.style.background = th['--bg']; document.body.style.color = th['--text']; }catch(e){}
-      try{ localStorage.setItem('omar_theme', name); }catch(e){}
-      try{ localStorage.setItem('omar_theme_trigger', Date.now().toString()); }catch(e){}
-    }catch(e){}
-  };
-  try{ var curTh=localStorage.getItem('omar_theme')||'forest'; window.applyTheme(curTh); }catch(e){}
-  document.addEventListener('DOMContentLoaded', function(){ try{ var curTh=localStorage.getItem('omar_theme')||'forest'; window.applyTheme(curTh); }catch(e){} });
-  try{ window.addEventListener('storage', function(e){ if(e.key==='omar_theme'&&e.newValue) window.applyTheme(e.newValue); if(e.key==='omar_theme_trigger'){ try{ var th=localStorage.getItem('omar_theme')||'forest'; window.applyTheme(th); }catch(ex){} } }); }catch(e){}
-})();
-</script>
+
+
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f0fdf4;--bg-soft:#dcfce7;--card:#ffffff;--card-border:#bbf7d0;--text:#14532d;--text-soft:#15803d;--hero:#16a34a;--hero-soft:#15803d;--gradient:linear-gradient(135deg,#16a34a,#15803d);--font-size-base:13px}
 *{box-sizing:border-box;margin:0;padding:0;font-family:var(--font-main,'Tajawal',sans-serif)}
 html{font-size:var(--font-size-base);background:var(--bg);color:var(--text)}
-body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:calc(var(--font-size-base)*5)}
-.app{max-width:100%;width:100%;margin:0 auto;padding:calc(var(--font-size-base)*0.6);min-height:100vh;padding-bottom:calc(var(--font-size-base)*6)}
+body{background:var(--bg);color:var(--text);overflow:auto;-webkit-overflow-scrolling:touch;min-height:100%;padding-bottom:calc(var(--font-size-base)*5)}
+.app{max-width:100%;width:100%;margin:0 auto;padding:calc(var(--font-size-base)*0.6);min-height:100%;padding-bottom:calc(var(--font-size-base)*6)}
 .top{position:sticky;top:0;z-index:20;background:var(--card);border:1.5px solid var(--card-border);border-radius:13px;padding:calc(var(--font-size-base)*0.7) calc(var(--font-size-base)*0.9);display:flex;justify-content:space-between;align-items:center;margin-bottom:calc(var(--font-size-base)*0.6)}
 .top h1{font-size:calc(var(--font-size-base)*0.9)!important;font-weight:900}
 .top h1 span{color:var(--hero)}
@@ -143,7 +117,18 @@ body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:calc
 <script>
 let $=id=>document.getElementById(id),fmt=n=>Math.round(n||0).toLocaleString("en-US");
 const GD=()=>({tr:JSON.parse(localStorage.getItem('omar_tx_v3')||'[]'),db:JSON.parse(localStorage.getItem('debts_pro_v2')||'[]'),ta:JSON.parse(localStorage.getItem('tasks_v6')||'[]'),lg:JSON.parse(localStorage.getItem('attendance_log')||'[]'),fixed:JSON.parse(localStorage.getItem('omar_fixed_by_month')||'{}')});
-function go(page, idx){ try{ if(parent && parent.switchPage) parent.switchPage(page, parent.document.querySelectorAll('.nav button')[idx]); else location.href=page; }catch(e){ location.href=page; } }
+function go(page, idx){ 
+  try{
+    // map file to tab name
+    var map={'home.html':'home','daily.html':'daily','attendance.html':'attendance','tasks.html':'tasks','settings.html':'settings'};
+    var tab = map[page] || 'daily';
+    if(parent && parent.go){ parent.go(tab); }
+    else if(parent && parent.switchPage){ parent.switchPage(page, parent.document.querySelectorAll('.nav button')[idx]); }
+    else { location.href=page; }
+  }catch(e){ 
+    try{ if(parent && parent.go) parent.go('daily'); else location.href=page; }catch(ex){ location.href=page; }
+  }
+}
 function toggleSec(head){
   let wrap=head.nextElementSibling;
   if(!wrap) return;

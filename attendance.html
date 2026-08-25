@@ -1,38 +1,137 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>الحضور</title>
-<script src="themes.js?v=28"></script>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800;900&display=swap" rel="stylesheet">
+<script src="themes32.js?v=32"></script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>الحضور - Omar v28 PRO - احترافي</title>
+
+<script src="drive-sync.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:var(--font-main,'Tajawal',sans-serif)}
-body{background:var(--bg);color:var(--text);max-width:430px;margin:0 auto;padding:8px;padding-bottom:80px}
-.card{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:10px;margin-bottom:8px}
-.btn{border:1px solid var(--card-border);background:var(--bg-soft);padding:8px;border-radius:8px;font-weight:800;font-size:9px;cursor:pointer;color:var(--text)}
-.btn.primary{background:var(--hero);color:#fff}
-table{width:100%;border-collapse:collapse;font-size:9px}
-th,td{padding:6px;text-align:center;border-bottom:1px solid var(--bg-soft)}
+:root{--bg:#f0fdf4;--bg-soft:#dcfce7;--card:#ffffff;--card-border:#bbf7d0;--text:#14532d;--text-soft:#15803d;--hero:#16a34a;--hero-soft:#15803d;--gradient:linear-gradient(135deg,#16a34a,#15803d);--font-size-base:13px}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Tajawal',sans-serif}
+html{font-size:var(--font-size-base);background:var(--bg);color:var(--text)}
+html,body{width:100%;height:100%;overflow:auto;-webkit-overflow-scrolling:touch;background:var(--bg);color:var(--text)}
+body{padding:0 calc(var(--font-size-base)*0.4) calc(var(--font-size-base)*0.5) calc(var(--font-size-base)*0.4);min-height:100%;margin:0}
+.en{font-family:'JetBrains Mono',monospace!important;direction:ltr!important;text-align:center}
+.card{background:var(--card);border:1.5px solid var(--card-border);border-radius:calc(var(--font-size-base)*0.7);padding:calc(var(--font-size-base)*0.6) calc(var(--font-size-base)*0.7);width:100%;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+#frozenTop{
+  position:sticky;
+  top:0;
+  left:0;
+  right:0;
+  width:100%;
+  max-width:100%;
+  z-index:30;
+  background:var(--bg);
+  padding:calc(var(--font-size-base)*0.4) 0 calc(var(--font-size-base)*0.2) 0;
+  border-bottom:1.5px solid var(--card-border);
+  box-shadow:0 8px 24px rgba(0,0,0,.06);
+}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:calc(var(--font-size-base)*0.35);margin:calc(var(--font-size-base)*0.5) 0}
+.stat{border-radius:calc(var(--font-size-base)*0.7);padding:calc(var(--font-size-base)*0.5) calc(var(--font-size-base)*0.2);border:1.5px solid var(--card-border);text-align:center;background:var(--card);position:relative;overflow:hidden}
+.stat::after{content:'';position:absolute;top:0;right:0;width:100%;height:2px;background:var(--hero)}
+.stat small{font-size:calc(var(--font-size-base)*0.42)!important;font-weight:800;opacity:.9;display:block;color:var(--text-soft);line-height:1.1}
+.stat b,.stat input{font-size:calc(var(--font-size-base)*0.62)!important;font-weight:900;color:var(--text)}
+.time-box{width:94%;border:1.5px solid var(--card-border);border-radius:calc(var(--font-size-base)*0.5);padding:calc(var(--font-size-base)*0.45) calc(var(--font-size-base)*0.2);text-align:center;font-size:calc(var(--font-size-base)*0.58)!important;background:var(--bg);color:var(--text);outline:none;font-weight:900;transition:.2s}
+.time-box:focus{border-color:var(--hero);box-shadow:0 0 0 3px rgba(0,0,0,.05)}
+.time-box.filled{background:var(--hero)!important;color:#fff!important;border-color:var(--hero)!important;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.time-box.half{background:var(--bg-soft)!important;border-color:var(--hero)!important;color:var(--hero)!important}
+.note-box{width:96%;border:1px dashed var(--card-border);border-radius:calc(var(--font-size-base)*0.45);padding:calc(var(--font-size-base)*0.35) calc(var(--font-size-base)*0.2);font-size:calc(var(--font-size-base)*0.48)!important;background:var(--bg);color:var(--text);outline:none;text-align:center;transition:.2s}
+.note-box:focus{border-style:solid;border-color:var(--hero);background:var(--card)}
+.table-wrap{background:var(--card);border:1.5px solid var(--card-border);border-radius:calc(var(--font-size-base)*0.7);overflow:hidden;width:100%;box-shadow:0 4px 16px rgba(0,0,0,.04)}
+.table-head{display:grid;grid-template-columns:1.2fr .8fr .8fr .6fr 1fr .35fr .35fr;background:var(--gradient);font-size:calc(var(--font-size-base)*0.48)!important;font-weight:900;padding:calc(var(--font-size-base)*0.6) calc(var(--font-size-base)*0.2);text-align:center;color:#fff;border-bottom:1px solid var(--card-border);position:sticky;top:0;z-index:2;letter-spacing:.3px}
+.row-item{display:grid;grid-template-columns:1.2fr .8fr .8fr .6fr 1fr .35fr .35fr;gap:calc(var(--font-size-base)*0.2);align-items:center;padding:calc(var(--font-size-base)*0.4) calc(var(--font-size-base)*0.15);border-bottom:1px solid var(--bg-soft);background:var(--card);transition:.15s}
+.row-item:hover{background:var(--bg-soft)}
+.row-item.done{border-right:3px solid var(--hero);background:linear-gradient(90deg,rgba(0,0,0,.02),var(--card))}
+.clear-btn{border:none;background:#FFF1F2;color:#ef4444;width:calc(var(--font-size-base)*1.6);height:calc(var(--font-size-base)*1.6);border-radius:calc(var(--font-size-base)*0.4);font-size:calc(var(--font-size-base)*0.62)!important;cursor:pointer;border:1px solid #FECDD3;display:flex;align-items:center;justify-content:center;transition:.2s}
+.clear-btn:hover{background:#ef4444;color:#fff}
+#days{max-height:none!important;overflow:visible!important}
+#mainWrap{max-width:100%;margin:0 auto;width:100%}
+#spacer{height:0;display:none}
+#spacer.hidden{height:0;display:none}
+#proModal{display:none;position:fixed;inset:0;background:rgba(15,23,42,.6);z-index:99999;align-items:center;justify-content:center;padding:calc(var(--font-size-base)*1);backdrop-filter:blur(8px)}
+#proModal.show{display:flex}
+.modal-box{background:var(--card);width:100%;max-width:340px;border-radius:calc(var(--font-size-base)*1.2);overflow:hidden;border:1.5px solid var(--card-border);box-shadow:0 16px 48px rgba(0,0,0,.2)}
 </style>
 </head>
 <body>
-<div class="card" style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:11px">⏱️ الحضور</b><span id="today" style="font-size:8px;background:var(--hero);color:#fff;padding:3px 7px;border-radius:20px"></span></div>
-<div class="card"><div style="display:flex;gap:6px"><input id="attDate" type="date" style="flex:1;padding:6px;border:1px solid var(--card-border);border-radius:7px;background:var(--bg-soft);color:var(--text)"><input id="attIn" type="time" style="flex:1;padding:6px;border:1px solid var(--card-border);border-radius:7px;background:var(--bg-soft);color:var(--text)"><input id="attOut" type="time" style="flex:1;padding:6px;border:1px solid var(--card-border);border-radius:7px;background:var(--bg-soft);color:var(--text)"></div><button class="btn primary" style="width:100%;margin-top:6px" onclick="saveAtt()">حفظ حضور</button></div>
-<div class="card"><div id="attTable"></div></div>
+<div id="frozenTop">
+<div class="card" style="display:flex;justify-content:space-between;align-items:center;padding:calc(var(--font-size-base)*0.6)">
+<div style="display:flex;gap:calc(var(--font-size-base)*0.4);align-items:center"><div style="font-size:calc(var(--font-size-base)*0.62);font-weight:900">⏱️ الحضور</div><button onclick="toggleTop()" id="toggleBtn" style="background:var(--bg-soft);border:1.5px solid var(--card-border);padding:calc(var(--font-size-base)*0.25) calc(var(--font-size-base)*0.6);border-radius:999px;font-size:calc(var(--font-size-base)*0.48);font-weight:800;color:var(--text);cursor:pointer">▲ إخفاء</button></div>
+<div style="display:flex;gap:calc(var(--font-size-base)*0.25);align-items:center"><div id="monthLabel" class="en" style="font-size:calc(var(--font-size-base)*0.58);background:var(--hero);color:#fff;padding:calc(var(--font-size-base)*0.25) calc(var(--font-size-base)*0.6);border-radius:999px;font-weight:900">8 / 2026</div><button onclick="changeMonth(-1)" style="background:var(--card);border:1.5px solid var(--card-border);width:calc(var(--font-size-base)*1.8);height:calc(var(--font-size-base)*1.8);border-radius:calc(var(--font-size-base)*0.4);font-weight:900;font-size:calc(var(--font-size-base)*0.7);cursor:pointer">‹</button><button onclick="changeMonth(1)" style="background:var(--card);border:1.5px solid var(--card-border);width:calc(var(--font-size-base)*1.8);height:calc(var(--font-size-base)*1.8);border-radius:calc(var(--font-size-base)*0.4);font-weight:900;font-size:calc(var(--font-size-base)*0.7);cursor:pointer">›</button><div id="clock" class="en" style="font-size:calc(var(--font-size-base)*0.48);background:var(--bg-soft);padding:calc(var(--font-size-base)*0.25) calc(var(--font-size-base)*0.5);border-radius:999px;font-weight:800;border:1px solid var(--card-border)">00:00:00</div></div>
+</div>
+<div id="topInfo">
+<div class="stats">
+<div class="stat"><small>سعر الساعة</small><b id="outPrice" class="en">0</b></div>
+<div class="stat"><small>الساعة</small><input id="v1" type="tel" class="en" value="1,200" onfocus="unFmt(this)" onblur="fmtField(this);calcTotals()" oninput="calcTotals()" style="width:100%;border:none;background:transparent;text-align:center;outline:none"></div>
+<div class="stat"><small>كم يوم</small><input id="v2" type="tel" class="en" value="26" oninput="calcTotals()" style="width:100%;border:none;background:transparent;text-align:center;outline:none"></div>
+<div class="stat"><small>عدد الساعات</small><b id="outTotal" class="en">0</b></div>
+<div class="stat"><small>الصافي</small><b id="outSafi" class="en">0</b></div>
+<div class="stat"><small>الديون</small><input id="v4" type="tel" class="en" value="0" onfocus="unFmt(this)" onblur="fmtField(this);calcTotals()" oninput="calcTotals()" style="width:100%;border:none;background:transparent;text-align:center;outline:none"></div>
+<div class="stat"><small>المطلوب</small><input id="v3" type="tel" class="en" value="15,000" onfocus="unFmt(this)" onblur="fmtField(this);calcTotals()" oninput="calcTotals()" style="width:100%;border:none;background:transparent;text-align:center;outline:none"></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--font-size-base)*0.35);margin:calc(var(--font-size-base)*0.5) 0">
+<div class="card" style="display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,var(--hero),#1e293b);color:#fff;border-color:var(--hero);padding:calc(var(--font-size-base)*0.6) calc(var(--font-size-base)*0.7)"><span style="font-size:calc(var(--font-size-base)*0.5);font-weight:800">المطلوب يومياً</span><span id="outDaily" class="en" style="font-weight:900;font-size:calc(var(--font-size-base)*0.6);background:rgba(255,255,255,.2);padding:calc(var(--font-size-base)*0.2) calc(var(--font-size-base)*0.5);border-radius:999px">0</span></div>
+<button onclick="openCloseModal()" id="closeBtn" style="background:linear-gradient(135deg,var(--hero),#1e293b);color:#fff;border:1.5px solid var(--hero);border-radius:calc(var(--font-size-base)*0.6);padding:calc(var(--font-size-base)*0.6);font-size:calc(var(--font-size-base)*0.58);font-weight:900;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15)">🔒 قفل الشهر وقبضت ✅</button>
+</div>
+<div id="closedList" style="margin:calc(var(--font-size-base)*0.4) 0;display:flex;gap:calc(var(--font-size-base)*0.25);flex-wrap:wrap"></div>
+</div>
+</div>
+
+<div id="mainWrap">
+<div id="spacer" style="display:none;height:0"></div>
+<div class="table-wrap"><div class="table-head"><div>اليوم</div><div>حضور</div><div>انصراف</div><div>ساعات</div><div>ملاحظات</div><div>إجازة</div><div>مسح</div></div><div id="days"></div></div>
+</div>
+
+<div id="proModal" onclick="if(event.target==this)closeModal()"><div class="modal-box"><div style="padding:calc(var(--font-size-base)*1.2);text-align:center"><div id="modalIcon" style="width:calc(var(--font-size-base)*3);height:calc(var(--font-size-base)*3);background:#FFF1F2;border-radius:calc(var(--font-size-base)*0.7);display:flex;align-items:center;justify-content:center;margin:0 auto calc(var(--font-size-base)*0.6);font-size:calc(var(--font-size-base)*1.3)">🗑️</div><div id="modalTitle" style="font-weight:900;font-size:calc(var(--font-size-base)*0.75);color:var(--text)">تمسح حضور اليوم ده؟</div><div id="modalDesc" style="font-size:calc(var(--font-size-base)*0.55);color:var(--text-soft);margin-top:calc(var(--font-size-base)*0.25)">هيتم مسح الحضور والانصراف بس</div></div><div style="display:flex;gap:calc(var(--font-size-base)*0.5);padding:calc(var(--font-size-base)*0.7);background:var(--bg-soft);border-top:1.5px solid var(--card-border)"><button onclick="closeModal()" style="flex:1;background:var(--card);border:1.5px solid var(--card-border);padding:calc(var(--font-size-base)*0.6);border-radius:calc(var(--font-size-base)*0.5);font-weight:800;font-size:calc(var(--font-size-base)*0.58)">إلغاء</button><button id="modalOk" onclick="confirmModal()" style="flex:1;background:#ef4444;color:#fff;border:none;padding:calc(var(--font-size-base)*0.6);border-radius:calc(var(--font-size-base)*0.5);font-weight:900;font-size:calc(var(--font-size-base)*0.58)">مسح ✓</button></div></div></div>
 <script>
-let att=JSON.parse(localStorage.getItem('att_fixed_final')||'{}');
-function renderAtt(){
- let html='<table><tr><th>اليوم</th><th>دخول</th><th>خروج</th><th></th></tr>';
- Object.keys(att).sort().reverse().forEach(d=>{html+=`<tr><td>${d}</td><td>${att[d].in||'-'}</td><td>${att[d].out||'-'}</td><td><button onclick="delAtt('${d}')" style="border:none;background:#fef2f2;color:#ef4444;border-radius:4px;padding:2px 5px">✕</button></td></tr>`});
- html+='</table>'; document.getElementById('attTable').innerHTML=html;
+let modalAction=null, modalKey=null;
+function openClearModal(key){ modalAction='clear'; modalKey=key; document.getElementById('proModal').classList.add('show'); }
+function openCloseModal(){ modalAction='close'; document.getElementById('modalIcon').innerText='🔒'; document.getElementById('modalTitle').innerText=`هتقفل شهر ${curM+1}/${curY}؟`; document.getElementById('proModal').classList.add('show'); }
+function closeModal(){ document.getElementById('proModal').classList.remove('show'); modalAction=null; modalKey=null; }
+function confirmModal(){ if(modalAction==='clear'){ doClearDay(modalKey); }else if(modalAction==='close'){ doCloseMonth(); } closeModal(); }
+let topHidden=localStorage.getItem('att_top_hidden')==='1';let curDate=new Date();let activeKey=localStorage.getItem('att_active_month');if(!activeKey){ activeKey=`${curDate.getFullYear()}-${curDate.getMonth()+1}`; localStorage.setItem('att_active_month',activeKey); }let [curY,curM]=activeKey.split('-').map(Number); curM=curM-1;let closed=JSON.parse(localStorage.getItem('att_closed')||'{}');
+function toggleTop(){
+  topHidden=!topHidden;
+  localStorage.setItem('att_top_hidden',topHidden?'1':'0');
+  applyTop();
 }
-function saveAtt(){
- let d=document.getElementById('attDate').value||new Date().toISOString().slice(0,10);
- let i=document.getElementById('attIn').value; let o=document.getElementById('attOut').value;
- att[d]={in:i,out:o}; localStorage.setItem('att_fixed_final',JSON.stringify(att)); renderAtt();
+function applyTop(){
+  document.getElementById('topInfo').style.display=topHidden?'none':'block';
+  document.getElementById('toggleBtn').innerText=topHidden?'▼ إظهار':'▲ إخفاء';
+  document.getElementById('spacer').className=topHidden?'hidden':'';
 }
-function delAtt(d){delete att[d]; localStorage.setItem('att_fixed_final',JSON.stringify(att)); renderAtt();}
-document.addEventListener('DOMContentLoaded',()=>{document.getElementById('today').textContent=new Date().toLocaleDateString('ar-EG'); document.getElementById('attDate').value=new Date().toISOString().slice(0,10); renderAtt();});
-</script>
-</body>
-</html>
+function changeMonth(d){curM+=d;if(curM<0){curM=11;curY--;}if(curM>11){curM=0;curY++;}renderAll();}
+function doCloseMonth(){let key=`${curY}-${curM+1}`;if(closed[key])return;let totalH=document.getElementById('outTotal').innerText;let totalMoney=document.getElementById('outSafi').innerText;closed[key]={hours:totalH,money:totalMoney};localStorage.setItem('att_closed',JSON.stringify(closed));curM++; if(curM>11){curM=0;curY++;}activeKey=`${curY}-${curM+1}`;localStorage.setItem('att_active_month',activeKey);renderAll();try{if(window.drive_auto_save)window.drive_auto_save();}catch(e){}}
+function renderClosedList(){let html='';Object.keys(closed).forEach(k=>{html+=`<span style="font-size:calc(var(--font-size-base)*0.45);background:var(--bg-soft);border:1.5px solid var(--card-border);padding:calc(var(--font-size-base)*0.2) calc(var(--font-size-base)*0.5);border-radius:999px;font-weight:800">🔒 ${k} - ${closed[k].money}ج</span>`;});document.getElementById('closedList').innerHTML=html;}
+let data=JSON.parse(localStorage.getItem('att_fixed_final')||'{}');let hols=JSON.parse(localStorage.getItem('att_hols_fixed')||'{}');let notes=JSON.parse(localStorage.getItem('att_notes')||'{}');
+function fmtField(el){ let raw=el.value.replace(/,/g,'').trim(); if(!raw) return; let num=parseFloat(raw); if(!isNaN(num)) el.value=num.toLocaleString("en-US"); }
+function unFmt(el){ el.value=el.value.replace(/,/g,''); el.select(); }
+function toEn(s){return String(s).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/,/g,'').replace(/[^0-9.:]/g,'');}
+function parseHour(v){if(!v) return 0;v=toEn(v);if(v.includes(':')){let p=v.split(':');return (parseFloat(p[0])||0)+(parseFloat(p[1])||0)/60;}return parseFloat(v)||0;}
+function calcDiff(a,b){if(!a||!b) return 0;let s=parseHour(a), e=parseHour(b);let d=e-s;if(d<0)d+=24;return d>0?d:0;}
+function renderAll(){const list=document.getElementById('days');document.getElementById('monthLabel').innerText=`${curM+1} / ${curY}`;const y=curY,m=curM;const dim=new Date(y,m+1,0).getDate();let html='';for(let i=1;i<=dim;i++){const key=`${y}-${m+1}-${i}`;const rec=data[key]||{in:'',out:''};const isHol=hols[key];const hours=calcDiff(rec.in,rec.out);const dayAr=['أحد','إثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'][new Date(y,m,i).getDay()];const noteVal=notes[key]||'';const isDone=rec.in&&rec.out&&!isHol;const inClass=rec.in?(isDone?'filled':'half'):'';const outClass=rec.out?(isDone?'filled':'half'):'';html+=`<div class="row-item ${isDone?'done':''}"><div style="font-size:calc(var(--font-size-base)*0.55);font-weight:800">${dayAr} <span class="en" style="font-size:calc(var(--font-size-base)*0.45);color:var(--text-soft)">(${i}/${m+1})</span></div><input id="in-${key}" type="tel" inputmode="numeric" class="time-box en ${inClass}" value="${rec.in}" placeholder="7" ${isHol?'disabled':''} oninput="saveD('${key}','in',this.value)"><input id="out-${key}" type="tel" inputmode="numeric" class="time-box en ${outClass}" value="${rec.out}" placeholder="19" ${isHol?'disabled':''} oninput="saveD('${key}','out',this.value)"><div id="h-${key}" class="en" style="font-size:calc(var(--font-size-base)*0.6);font-weight:900;color:${isDone?'var(--hero)':''}">${isHol?'-':hours?hours.toFixed(2):'-'}</div><input id="note-${key}" type="text" class="note-box" placeholder="ملاحظة..." value="${noteVal}" oninput="saveNote('${key}',this.value)"><button onclick="toggleHol('${key}')" style="border:none;background:${isHol?'var(--hero)':'var(--bg-soft)'};width:calc(var(--font-size-base)*1.4);height:calc(var(--font-size-base)*1.4);border-radius:calc(var(--font-size-base)*0.35);font-size:calc(var(--font-size-base)*0.52);color:${isHol?'#fff':'var(--text-soft)'};border:1.5px solid var(--card-border);cursor:pointer;font-weight:900">${isHol?'✓':'○'}</button><button class="clear-btn" onclick="openClearModal('${key}')">✕</button></div>`;}list.innerHTML=html;calcTotals();renderClosedList();}
+function doClearDay(k){ data[k]={in:'',out:''}; localStorage.setItem('att_fixed_final',JSON.stringify(data)); try{if(window.drive_auto_save)window.drive_auto_save();}catch(e){} renderAll(); }
+function saveD(k,t,v){let clean=toEn(v);if(!data[k]) data[k]={in:'',out:''};data[k][t]=clean;localStorage.setItem('att_fixed_final',JSON.stringify(data));try{if(window.drive_auto_save)window.drive_auto_save();}catch(e){}const h=calcDiff(data[k].in,data[k].out);const hEl=document.getElementById('h-'+k);if(hEl){ hEl.innerText=h?h.toFixed(2):'-'; hEl.style.color=h?'var(--hero)':''; }const inEl=document.getElementById('in-'+k);const outEl=document.getElementById('out-'+k);const row=inEl?.closest('.row-item');const isDone=data[k].in&&data[k].out;if(row) row.classList.toggle('done',!!isDone);if(inEl){ inEl.classList.remove('filled','half'); if(data[k].in) inEl.classList.add(isDone?'filled':'half'); }if(outEl){ outEl.classList.remove('filled','half'); if(data[k].out) outEl.classList.add(isDone?'filled':'half'); }calcTotals();}
+function saveNote(k,v){notes[k]=v;localStorage.setItem('att_notes',JSON.stringify(notes));try{if(window.drive_auto_save)window.drive_auto_save();}catch(e){}}
+function toggleHol(k){if(hols[k]) delete hols[k]; else hols[k]=true;localStorage.setItem('att_hols_fixed',JSON.stringify(hols));try{if(window.drive_auto_save)window.drive_auto_save();}catch(e){}renderAll();}
+function calcTotals(){
+  let v1=parseFloat(toEn(document.getElementById('v1').value))||0;
+  let v2=parseFloat(toEn(document.getElementById('v2').value))||1;
+  let total=0;
+  Object.entries(data).forEach(([k,r])=>{
+    let [yy,mm]=k.split('-').map(Number);
+    if(yy===curY&&mm===curM+1&&!hols[k]) total+=calcDiff(r.in,r.out);
+  });
+  const price=v2?v1/v2:0;
+  const v3=parseFloat(toEn(document.getElementById('v3').value))||0;
+  const debts=parseFloat(toEn(document.getElementById('v4').value))||0;
+  document.getElementById('outPrice').innerText=price?price.toFixed(2):'0';
+  document.getElementById('outTotal').innerText=total.toFixed(2);
+  let safi = (total*price) - debts;
+  document.getElementById('outSafi').innerText=Math.round(safi).toLocaleString("en-US");
+  document.getElementById('outDaily').innerText=price&&v2?(v3/price/v2).toFixed(2):'0.00';
+}
+setInterval(()=>{const el=document.getElementById('clock');if(el) el.innerText=new Date().toLocaleTimeString('en-GB',{hour12:false});},1000);applyTop();renderAll();
+</script></body></html>

@@ -1,0 +1,89 @@
+window.themes = {
+  light:{'--bg':'#f8fafc','--bg-soft':'#f1f5f9','--card':'#ffffff','--card-border':'#e2e8f0','--text':'#0f172a','--text-soft':'#64748b','--hero':'#0f172a','--hero-soft':'#334155','--gradient':'linear-gradient(135deg,#0f172a,#334155)'},
+  dark:{'--bg':'#0f172a','--bg-soft':'#1e293b','--card':'#1e293b','--card-border':'#334155','--text':'#f1f5f9','--text-soft':'#94a3b8','--hero':'#38bdf8','--hero-soft':'#0ea5e9','--gradient':'linear-gradient(135deg,#38bdf8,#0ea5e9)'},
+  forest:{'--bg':'#f0fdf4','--bg-soft':'#dcfce7','--card':'#ffffff','--card-border':'#bbf7d0','--text':'#14532d','--text-soft':'#15803d','--hero':'#16a34a','--hero-soft':'#15803d','--gradient':'linear-gradient(135deg,#16a34a,#15803d)'},
+  material:{'--bg':'#121212','--bg-soft':'#1e1e1e','--card':'#1e1e1e','--card-border':'#2c2c2c','--text':'#e0e0e0','--text-soft':'#9e9e9e','--hero':'#bb86fc','--hero-soft':'#9c64e0','--gradient':'linear-gradient(135deg,#bb86fc,#9c64e0)'},
+  ocean:{'--bg':'#f0f9ff','--bg-soft':'#e0f2fe','--card':'#ffffff','--card-border':'#bae6fd','--text':'#0c4a6e','--text-soft':'#0284c7','--hero':'#0284c7','--hero-soft':'#0369a1','--gradient':'linear-gradient(135deg,#0284c7,#0ea5e9)'},
+  rose:{'--bg':'#fff1f2','--bg-soft':'#ffe4e6','--card':'#ffffff','--card-border':'#fecdd3','--text':'#4c0519','--text-soft':'#be123c','--hero':'#e11d48','--hero-soft':'#be123c','--gradient':'linear-gradient(135deg,#e11d48,#f43f5e)'},
+  midnight:{'--bg':'#020617','--bg-soft':'#0f172a','--card':'#0f172a','--card-border':'#1e293b','--text':'#f8fafc','--text-soft':'#94a3b8','--hero':'#6366f1','--hero-soft':'#4f46e5','--gradient':'linear-gradient(135deg,#6366f1,#8b5cf6)'},
+  everforest:{'--bg':'#fdf6e3','--bg-soft':'#f4e8c1','--card':'#ffffff','--card-border':'#e6d5a8','--text':'#2d353b','--text-soft':'#5a6c5a','--hero':'#5a8f6b','--hero-soft':'#4a7a5a','--gradient':'linear-gradient(135deg,#5a8f6b,#a7c080)'}
+};
+window.applyTheme = function(name){
+  try{
+    var th = window.themes[name] || window.themes['forest'];
+    var r = document.documentElement;
+    for(var k in th){ if(th.hasOwnProperty(k)) r.style.setProperty(k, th[k]); }
+    try{ document.body.style.background = th['--bg']; document.body.style.color = th['--text']; }catch(e){}
+    try{ localStorage.setItem('omar_theme', name); localStorage.setItem('omar_theme_trigger', Date.now().toString()); }catch(e){}
+  }catch(e){}
+};
+window.applyFontSize = function(size){
+  try{
+    var v = parseInt(size) || 13;
+    if(v < 10) v = 10; if(v > 22) v = 22;
+    // طريقة مزدوجة لضمان العمل في SPCK WebView
+    document.documentElement.style.setProperty('--font-size-base', v + 'px');
+    document.documentElement.style.fontSize = v + 'px';
+    try{ document.body.style.fontSize = v + 'px'; }catch(e){}
+    try{
+      var style = document.getElementById('omar-font-override');
+      if(!style){
+        style = document.createElement('style');
+        style.id = 'omar-font-override';
+        document.head.appendChild(style);
+      }
+      style.textContent = 'html{font-size:'+v+'px !important;} :root{--font-size-base:'+v+'px !important;}';
+    }catch(e){}
+    try{ localStorage.setItem('omar_font_size', v.toString()); localStorage.setItem('omar_font_trigger', Date.now().toString()); }catch(e){}
+    var sl = document.getElementById('fontSlider'); if(sl) sl.value = v;
+    var fv = document.getElementById('fontVal'); if(fv) fv.textContent = v + 'px';
+  }catch(e){ console.log('applyFontSize error', e); }
+};
+(function(){
+  try{ var th = localStorage.getItem('omar_theme') || 'forest'; window.applyTheme(th); }catch(e){}
+  try{ var fs = localStorage.getItem('omar_font_size') || '13'; window.applyFontSize(fs); }catch(e){}
+})();
+try{
+  window.addEventListener('storage', function(e){
+    if(e.key === 'omar_theme' && e.newValue) window.applyTheme(e.newValue);
+    if(e.key === 'omar_theme_trigger'){ try{ var th = localStorage.getItem('omar_theme') || 'forest'; window.applyTheme(th); }catch(ex){} }
+    if(e.key === 'omar_font_size' && e.newValue) window.applyFontSize(e.newValue);
+    if(e.key === 'omar_font_trigger'){ try{ var fs = localStorage.getItem('omar_font_size') || '13'; window.applyFontSize(fs); }catch(ex){} }
+  });
+}catch(e){}
+try{
+  window.addEventListener('message', function(e){
+    if(!e.data) return;
+    if(e.data.type === 'omar_theme_change' && e.data.theme) window.applyTheme(e.data.theme);
+    if(e.data.type === 'omar_font_change' && e.data.size) window.applyFontSize(e.data.size);
+  });
+}catch(e){}
+try{
+  if(window.BroadcastChannel){
+    var bcTheme = new BroadcastChannel('omar_theme_v28');
+    bcTheme.onmessage = function(ev){ if(ev.data && ev.data.t) window.applyTheme(ev.data.t); };
+    var bcFont = new BroadcastChannel('omar_font_v28');
+    bcFont.onmessage = function(ev){ if(ev.data && ev.data.size) window.applyFontSize(ev.data.size); };
+  }
+}catch(e){}
+
+
+// --- POLLING for SPCK WebView where storage event may not fire ---
+(function(){
+  var lastFont = localStorage.getItem('omar_font_size') || '13';
+  var lastTheme = localStorage.getItem('omar_theme') || 'forest';
+  setInterval(function(){
+    try{
+      var curFont = localStorage.getItem('omar_font_size');
+      if(curFont && curFont !== lastFont){
+        lastFont = curFont;
+        if(window.applyFontSize) window.applyFontSize(curFont);
+      }
+      var curTheme = localStorage.getItem('omar_theme');
+      if(curTheme && curTheme !== lastTheme){
+        lastTheme = curTheme;
+        if(window.applyTheme) window.applyTheme(curTheme);
+      }
+    }catch(e){}
+  }, 300);
+})();

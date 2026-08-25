@@ -2,53 +2,163 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Omar PRO v15</title>
-<script src="themes.js?v=15"></script>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Omar</title>
+<link rel="manifest" href="manifest.json">
+<script src="themes32.js?v=32"></script>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:var(--font-main,'Tajawal',sans-serif)}
-html{font-size:14px;background:var(--bg);color:var(--text)}
-body{max-width:430px;margin:0 auto;min-height:100dvh;background:var(--bg);border-left:1px solid var(--card-border);border-right:1px solid var(--card-border);padding-bottom:70px}
-.view{display:none;height:calc(100dvh - 70px)}
-.view.active{display:block}
-.view iframe{width:100%;height:100%;border:none;background:var(--bg)}
-.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--card);border-top:1.5px solid var(--card-border);display:flex;justify-content:space-around;padding:6px 0 8px 0;z-index:99;backdrop-filter:blur(10px)}
-.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;border:none;background:transparent;color:var(--text-soft);font-size:9px;font-weight:800;cursor:pointer;padding:4px}
+:root{--bg:#f0fdf4;--card:#ffffff;--card-border:#bbf7d0;--text:#14532d;--text-soft:#15803d;--hero:#16a34a}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Tajawal',sans-serif}
+html,body{height:100%;width:100%;overflow:hidden;background:var(--bg)}
+body{display:flex;justify-content:center;background:#0f172a}
+.phone{width:100%;max-width:100%;height:100dvh;background:var(--bg);position:relative;display:flex;flex-direction:column;overflow:hidden}
+@media(min-width:500px){body{align-items:center} .phone{max-width:430px;border-left:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}}
+.views{flex:1;position:relative;overflow:hidden;background:var(--bg)}
+.view{position:absolute;inset:0;display:none;flex-direction:column;overflow:hidden;background:var(--bg)}
+.view.active{display:flex}
+.view iframe{flex:1;width:100%;height:100%;border:none;display:block;background:var(--bg)}
+.bottom-nav{height:62px;min-height:62px;background:var(--card);border-top:1.5px solid var(--card-border);display:flex;justify-content:space-around;align-items:center;z-index:99;flex-shrink:0}
+.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;border:none;background:transparent;color:var(--text-soft);font-size:9px;font-weight:800;cursor:pointer;padding:6px 2px}
 .tab-btn.active{color:var(--hero)}
-.tab-btn b{font-size:18px;line-height:1}
+.tab-btn b{font-size:19px;line-height:1}
 </style>
 </head>
 <body>
-<div id="v-home" class="view active"><iframe src="home.html"></iframe></div>
-<div id="v-daily" class="view"><iframe src="daily.html"></iframe></div>
-<div id="v-attendance" class="view"><iframe src="attendance.html"></iframe></div>
-<div id="v-tasks" class="view"><iframe src="tasks.html"></iframe></div>
-<div id="v-settings" class="view"><iframe src="settings.html"></iframe></div>
-
-<div class="bottom-nav">
-<button class="tab-btn active" data-v="home" onclick="go('home')"><b>🏠</b><span>الرئيسية</span></button>
-<button class="tab-btn" data-v="daily" onclick="go('daily')"><b>📒</b><span>اليومية</span></button>
-<button class="tab-btn" data-v="attendance" onclick="go('attendance')"><b>⏱️</b><span>الحضور</span></button>
-<button class="tab-btn" data-v="tasks" onclick="go('tasks')"><b>✅</b><span>المهام</span></button>
-<button class="tab-btn" data-v="settings" onclick="go('settings')"><b>⚙️</b><span>الإعدادات</span></button>
+<div class="phone">
+  <div class="views">
+    <div id="v-home" class="view active"><iframe src="home.html" id="f-home"></iframe></div>
+    <div id="v-daily" class="view"><iframe data-src="daily.html" id="f-daily"></iframe></div>
+    <div id="v-attendance" class="view"><iframe data-src="attendance.html" id="f-att"></iframe></div>
+    <div id="v-tasks" class="view"><iframe data-src="tasks.html" id="f-tasks"></iframe></div>
+    <div id="v-settings" class="view"><iframe data-src="settings.html" id="f-set"></iframe></div>
+  </div>
+  <div class="bottom-nav">
+    <button class="tab-btn active" data-v="home" onclick="go('home')"><b>🏠</b><span>الرئيسية</span></button>
+    <button class="tab-btn" data-v="daily" onclick="go('daily')"><b>📒</b><span>اليومية</span></button>
+    <button class="tab-btn" data-v="attendance" onclick="go('attendance')"><b>⏱️</b><span>الحضور</span></button>
+    <button class="tab-btn" data-v="tasks" onclick="go('tasks')"><b>✅</b><span>المهام</span></button>
+    <button class="tab-btn" data-v="settings" onclick="go('settings')"><b>⚙️</b><span>الإعدادات</span></button>
+  </div>
 </div>
-
 <script>
-function go(v){
- document.querySelectorAll('.view').forEach(e=>e.classList.remove('active'));
- document.getElementById('v-'+v).classList.add('active');
- document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
- document.querySelector(`.tab-btn[data-v="${v}"]`).classList.add('active');
- localStorage.setItem('omar_last_tab',v);
- // reload iframe to refresh theme if needed
- let f=document.querySelector('#v-'+v+' iframe');
- if(f) f.contentWindow.location.reload();
+function ensure(v){
+  var map={home:'f-home',daily:'f-daily',attendance:'f-att',tasks:'f-tasks',settings:'f-set'};
+  var f=document.getElementById(map[v]);
+  if(f && (!f.src || f.src==='about:blank')){
+    var ds=f.getAttribute('data-src');
+    if(ds) f.src=ds;
+  }
 }
-document.addEventListener('DOMContentLoaded',()=>{
- let last=localStorage.getItem('omar_last_tab')||'home';
- go(last);
+function applyFontToAllIframes(size){
+  var v = parseInt(size)||13;
+  var ids=['f-home','f-daily','f-att','f-tasks','f-set'];
+  ids.forEach(function(id){
+    try{
+      var f=document.getElementById(id);
+      if(!f) return;
+      // Method 1: call function if exists
+      if(f.contentWindow && f.contentWindow.applyFontSize){
+        f.contentWindow.applyFontSize(v);
+      }
+      // Method 2: direct DOM injection (works even if function fails)
+      var doc = f.contentDocument || (f.contentWindow && f.contentWindow.document);
+      if(doc){
+        var html = doc.documentElement;
+        if(html){
+          html.style.setProperty('--font-size-base', v+'px');
+          html.style.fontSize = v+'px';
+        }
+        var body = doc.body;
+        if(body) body.style.fontSize = v+'px';
+        // Inject override style
+        var style = doc.getElementById('omar-font-override');
+        if(!style){
+          style = doc.createElement('style');
+          style.id = 'omar-font-override';
+          if(doc.head) doc.head.appendChild(style);
+          else if(html) html.appendChild(style);
+        }
+        if(style){
+          style.textContent = 'html{font-size:'+v+'px !important;} :root{--font-size-base:'+v+'px !important;} body{font-size:'+v+'px !important;}';
+        }
+      }
+    }catch(e){
+      console.log('apply to iframe '+id+' failed', e.message);
+    }
+  });
+  // Also apply to self
+  if(window.applyFontSize) window.applyFontSize(v);
+}
+function applyThemeToAllIframes(theme){
+  var ids=['f-home','f-daily','f-att','f-tasks','f-set'];
+  ids.forEach(function(id){
+    try{
+      var f=document.getElementById(id);
+      if(f && f.contentWindow && f.contentWindow.applyTheme){
+        f.contentWindow.applyTheme(theme);
+      }
+    }catch(e){}
+  });
+  if(window.applyTheme) window.applyTheme(theme);
+}
+function go(v){
+  document.querySelectorAll('.view').forEach(function(el){ el.classList.remove('active'); });
+  document.getElementById('v-'+v).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelector('.tab-btn[data-v="'+v+'"]').classList.add('active');
+  localStorage.setItem('omar_last_tab', v);
+  ensure(v);
+  setTimeout(function(){
+    try{
+      var f=document.getElementById({home:'f-home',daily:'f-daily',attendance:'f-att',tasks:'f-tasks',settings:'f-set'}[v]);
+      if(f){
+        var th = localStorage.getItem('omar_theme')||'forest';
+        var fs = localStorage.getItem('omar_font_size')||'13';
+        if(f.contentWindow && f.contentWindow.applyTheme) f.contentWindow.applyTheme(th);
+        if(f.contentWindow && f.contentWindow.applyFontSize) f.contentWindow.applyFontSize(fs);
+        applyFontToAllIframes(fs);
+      }
+    }catch(e){}
+  }, 200);
+}
+window.addEventListener('message', function(e){
+  if(!e.data) return;
+  if(e.data.type==='omar_theme_change'){
+    localStorage.setItem('omar_theme', e.data.theme);
+    localStorage.setItem('omar_theme_trigger', Date.now().toString());
+    applyThemeToAllIframes(e.data.theme);
+  }
+  if(e.data.type==='omar_font_change'){
+    var v = parseInt(e.data.size)||13;
+    localStorage.setItem('omar_font_size', v.toString());
+    localStorage.setItem('omar_font_trigger', Date.now().toString());
+    applyFontToAllIframes(v);
+    try{ if(window.BroadcastChannel){ var ch=new BroadcastChannel('omar_font_v28'); ch.postMessage({size:v}); ch.close(); } }catch(ex){}
+  }
 });
+document.addEventListener('DOMContentLoaded', function(){
+  var last=localStorage.getItem('omar_last_tab')||'home';
+  if(last && last!=='home') go(last);
+  // Initial sync after all iframes load
+  setTimeout(function(){
+    var fs=localStorage.getItem('omar_font_size')||'13';
+    var th=localStorage.getItem('omar_theme')||'forest';
+    applyFontToAllIframes(fs);
+    applyThemeToAllIframes(th);
+  }, 800);
+  if('serviceWorker' in navigator) navigator.serviceWorker.register('service-worker.js');
+});
+// Also poll for font changes in case message fails
+setInterval(function(){
+  try{
+    var cur = localStorage.getItem('omar_font_size');
+    var last = window._lastFontSize || '13';
+    if(cur && cur !== last){
+      window._lastFontSize = cur;
+      applyFontToAllIframes(cur);
+    }
+  }catch(e){}
+}, 400);
 </script>
 </body>
 </html>
