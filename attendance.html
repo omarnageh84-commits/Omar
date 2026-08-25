@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الحضور</title>
+<script src="themes.js?v=28"></script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:var(--font-main,'Tajawal',sans-serif)}
+body{background:var(--bg);color:var(--text);max-width:430px;margin:0 auto;padding:8px;padding-bottom:80px}
+.card{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:10px;margin-bottom:8px}
+.btn{border:1px solid var(--card-border);background:var(--bg-soft);padding:8px;border-radius:8px;font-weight:800;font-size:9px;cursor:pointer;color:var(--text)}
+.btn.primary{background:var(--hero);color:#fff}
+table{width:100%;border-collapse:collapse;font-size:9px}
+th,td{padding:6px;text-align:center;border-bottom:1px solid var(--bg-soft)}
+</style>
+</head>
+<body>
+<div class="card" style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:11px">⏱️ الحضور</b><span id="today" style="font-size:8px;background:var(--hero);color:#fff;padding:3px 7px;border-radius:20px"></span></div>
+<div class="card"><div style="display:flex;gap:6px"><input id="attDate" type="date" style="flex:1;padding:6px;border:1px solid var(--card-border);border-radius:7px;background:var(--bg-soft);color:var(--text)"><input id="attIn" type="time" style="flex:1;padding:6px;border:1px solid var(--card-border);border-radius:7px;background:var(--bg-soft);color:var(--text)"><input id="attOut" type="time" style="flex:1;padding:6px;border:1px solid var(--card-border);border-radius:7px;background:var(--bg-soft);color:var(--text)"></div><button class="btn primary" style="width:100%;margin-top:6px" onclick="saveAtt()">حفظ حضور</button></div>
+<div class="card"><div id="attTable"></div></div>
+<script>
+let att=JSON.parse(localStorage.getItem('att_fixed_final')||'{}');
+function renderAtt(){
+ let html='<table><tr><th>اليوم</th><th>دخول</th><th>خروج</th><th></th></tr>';
+ Object.keys(att).sort().reverse().forEach(d=>{html+=`<tr><td>${d}</td><td>${att[d].in||'-'}</td><td>${att[d].out||'-'}</td><td><button onclick="delAtt('${d}')" style="border:none;background:#fef2f2;color:#ef4444;border-radius:4px;padding:2px 5px">✕</button></td></tr>`});
+ html+='</table>'; document.getElementById('attTable').innerHTML=html;
+}
+function saveAtt(){
+ let d=document.getElementById('attDate').value||new Date().toISOString().slice(0,10);
+ let i=document.getElementById('attIn').value; let o=document.getElementById('attOut').value;
+ att[d]={in:i,out:o}; localStorage.setItem('att_fixed_final',JSON.stringify(att)); renderAtt();
+}
+function delAtt(d){delete att[d]; localStorage.setItem('att_fixed_final',JSON.stringify(att)); renderAtt();}
+document.addEventListener('DOMContentLoaded',()=>{document.getElementById('today').textContent=new Date().toLocaleDateString('ar-EG'); document.getElementById('attDate').value=new Date().toISOString().slice(0,10); renderAtt();});
+</script>
+</body>
+</html>

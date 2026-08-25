@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Omar PRO v15</title>
+<script src="themes.js?v=15"></script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:var(--font-main,'Tajawal',sans-serif)}
+html{font-size:14px;background:var(--bg);color:var(--text)}
+body{max-width:430px;margin:0 auto;min-height:100dvh;background:var(--bg);border-left:1px solid var(--card-border);border-right:1px solid var(--card-border);padding-bottom:70px}
+.view{display:none;height:calc(100dvh - 70px)}
+.view.active{display:block}
+.view iframe{width:100%;height:100%;border:none;background:var(--bg)}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--card);border-top:1.5px solid var(--card-border);display:flex;justify-content:space-around;padding:6px 0 8px 0;z-index:99;backdrop-filter:blur(10px)}
+.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;border:none;background:transparent;color:var(--text-soft);font-size:9px;font-weight:800;cursor:pointer;padding:4px}
+.tab-btn.active{color:var(--hero)}
+.tab-btn b{font-size:18px;line-height:1}
+</style>
+</head>
+<body>
+<div id="v-home" class="view active"><iframe src="home.html"></iframe></div>
+<div id="v-daily" class="view"><iframe src="daily.html"></iframe></div>
+<div id="v-attendance" class="view"><iframe src="attendance.html"></iframe></div>
+<div id="v-tasks" class="view"><iframe src="tasks.html"></iframe></div>
+<div id="v-settings" class="view"><iframe src="settings.html"></iframe></div>
+
+<div class="bottom-nav">
+<button class="tab-btn active" data-v="home" onclick="go('home')"><b>🏠</b><span>الرئيسية</span></button>
+<button class="tab-btn" data-v="daily" onclick="go('daily')"><b>📒</b><span>اليومية</span></button>
+<button class="tab-btn" data-v="attendance" onclick="go('attendance')"><b>⏱️</b><span>الحضور</span></button>
+<button class="tab-btn" data-v="tasks" onclick="go('tasks')"><b>✅</b><span>المهام</span></button>
+<button class="tab-btn" data-v="settings" onclick="go('settings')"><b>⚙️</b><span>الإعدادات</span></button>
+</div>
+
+<script>
+function go(v){
+ document.querySelectorAll('.view').forEach(e=>e.classList.remove('active'));
+ document.getElementById('v-'+v).classList.add('active');
+ document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+ document.querySelector(`.tab-btn[data-v="${v}"]`).classList.add('active');
+ localStorage.setItem('omar_last_tab',v);
+ // reload iframe to refresh theme if needed
+ let f=document.querySelector('#v-'+v+' iframe');
+ if(f) f.contentWindow.location.reload();
+}
+document.addEventListener('DOMContentLoaded',()=>{
+ let last=localStorage.getItem('omar_last_tab')||'home';
+ go(last);
+});
+</script>
+</body>
+</html>

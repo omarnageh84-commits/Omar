@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الرئيسية - Omar PRO v28 - احترافية عالمية مربوطة</title>
+<script src="themes.js?v=28"></script>
+<script>
+// Omar PRO v28 INLINE - مربوط - لا يلعب في أي حاجة تاني - بس ثيم
+(function(){
+  window.themes = window.themes || {
+    light:{'--bg':'#f8fafc','--bg-soft':'#f1f5f9','--card':'#ffffff','--card-border':'#e2e8f0','--text':'#0f172a','--text-soft':'#64748b','--hero':'#0f172a','--hero-soft':'#334155','--gradient':'linear-gradient(135deg,#0f172a,#334155)'},
+    dark:{'--bg':'#0f172a','--bg-soft':'#1e293b','--card':'#1e293b','--card-border':'#334155','--text':'#f1f5f9','--text-soft':'#94a3b8','--hero':'#38bdf8','--hero-soft':'#0ea5e9','--gradient':'linear-gradient(135deg,#38bdf8,#0ea5e9)'},
+    forest:{'--bg':'#f0fdf4','--bg-soft':'#dcfce7','--card':'#ffffff','--card-border':'#bbf7d0','--text':'#14532d','--text-soft':'#15803d','--hero':'#16a34a','--hero-soft':'#15803d','--gradient':'linear-gradient(135deg,#16a34a,#15803d)'},
+    material:{'--bg':'#121212','--bg-soft':'#1e1e1e','--card':'#1e1e1e','--card-border':'#2c2c2c','--text':'#e0e0e0','--text-soft':'#9e9e9e','--hero':'#bb86fc','--hero-soft':'#9c64e0','--gradient':'linear-gradient(135deg,#bb86fc,#9c64e0)'},
+    ocean:{'--bg':'#f0f9ff','--bg-soft':'#e0f2fe','--card':'#ffffff','--card-border':'#bae6fd','--text':'#0c4a6e','--text-soft':'#0284c7','--hero':'#0284c7','--hero-soft':'#0369a1','--gradient':'linear-gradient(135deg,#0284c7,#0ea5e9)'},
+    rose:{'--bg':'#fff1f2','--bg-soft':'#ffe4e6','--card':'#ffffff','--card-border':'#fecdd3','--text':'#4c0519','--text-soft':'#be123c','--hero':'#e11d48','--hero-soft':'#be123c','--gradient':'linear-gradient(135deg,#e11d48,#f43f5e)'},
+    midnight:{'--bg':'#020617','--bg-soft':'#0f172a','--card':'#0f172a','--card-border':'#1e293b','--text':'#f8fafc','--text-soft':'#94a3b8','--hero':'#6366f1','--hero-soft':'#4f46e5','--gradient':'linear-gradient(135deg,#6366f1,#8b5cf6)'},
+    everforest:{'--bg':'#fdf6e3','--bg-soft':'#f4e8c1','--card':'#ffffff','--card-border':'#e6d5a8','--text':'#2d353b','--text-soft':'#5a6c5a','--hero':'#5a8f6b','--hero-soft':'#4a7a5a','--gradient':'linear-gradient(135deg,#5a8f6b,#a7c080)'}
+  };
+  window.applyTheme = function(name){
+    try{
+      var th = window.themes[name] || window.themes['forest'];
+      var r = document.documentElement;
+      for(var k in th){ if(th.hasOwnProperty(k)){ r.style.setProperty(k, th[k]); } }
+      try{ document.body.style.background = th['--bg']; document.body.style.color = th['--text']; }catch(e){}
+      try{ localStorage.setItem('omar_theme', name); }catch(e){}
+      try{ localStorage.setItem('omar_theme_trigger', Date.now().toString()); }catch(e){}
+    }catch(e){}
+  };
+  try{ var curTh=localStorage.getItem('omar_theme')||'forest'; window.applyTheme(curTh); }catch(e){}
+  document.addEventListener('DOMContentLoaded', function(){ try{ var curTh=localStorage.getItem('omar_theme')||'forest'; window.applyTheme(curTh); }catch(e){} });
+  try{ window.addEventListener('storage', function(e){ if(e.key==='omar_theme'&&e.newValue) window.applyTheme(e.newValue); if(e.key==='omar_theme_trigger'){ try{ var th=localStorage.getItem('omar_theme')||'forest'; window.applyTheme(th); }catch(ex){} } }); }catch(e){}
+})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f0fdf4;--bg-soft:#dcfce7;--card:#ffffff;--card-border:#bbf7d0;--text:#14532d;--text-soft:#15803d;--hero:#16a34a;--hero-soft:#15803d;--gradient:linear-gradient(135deg,#16a34a,#15803d);--font-size-base:13px}
+*{box-sizing:border-box;margin:0;padding:0;font-family:var(--font-main,'Tajawal',sans-serif)}
+html{font-size:var(--font-size-base);background:var(--bg);color:var(--text)}
+body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:calc(var(--font-size-base)*5)}
+.app{max-width:100%;width:100%;margin:0 auto;padding:calc(var(--font-size-base)*0.6);min-height:100vh;padding-bottom:calc(var(--font-size-base)*6)}
+.top{position:sticky;top:0;z-index:20;background:var(--card);border:1.5px solid var(--card-border);border-radius:13px;padding:calc(var(--font-size-base)*0.7) calc(var(--font-size-base)*0.9);display:flex;justify-content:space-between;align-items:center;margin-bottom:calc(var(--font-size-base)*0.6)}
+.top h1{font-size:calc(var(--font-size-base)*0.9)!important;font-weight:900}
+.top h1 span{color:var(--hero)}
+.time{font-size:calc(var(--font-size-base)*0.48)!important;color:var(--text-soft);background:var(--bg-soft);border:1px solid var(--card-border);padding:calc(var(--font-size-base)*0.25) calc(var(--font-size-base)*0.6);border-radius:99px;font-weight:800}
+.avatar{width:calc(var(--font-size-base)*2.6);height:calc(var(--font-size-base)*2.6);border-radius:calc(var(--font-size-base)*0.7);overflow:hidden;border:1.5px solid var(--card-border);background:var(--card);display:flex;align-items:center;justify-content:center}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.kpi-grid-4{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:calc(var(--font-size-base)*0.4)!important;margin-bottom:calc(var(--font-size-base)*0.6)}
+.stat{background:var(--card);border:1.5px solid var(--card-border);border-radius:11px;position:relative;overflow:hidden;min-height:calc(var(--font-size-base) * 4.5)!important;padding:calc(var(--font-size-base)*0.6) calc(var(--font-size-base)*0.5)!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;cursor:pointer}
+.stat::after{content:'';position:absolute;top:0;right:0;width:100%;height:2px;background:var(--hero)}
+.stat small{font-size:calc(var(--font-size-base) * 0.44)!important;color:var(--text-soft);font-weight:800;display:block}
+.stat b{font-size:calc(var(--font-size-base) * 0.78)!important;font-weight:900;margin-top:calc(var(--font-size-base)*0.2);display:block}
+.stat .sub{font-size:calc(var(--font-size-base)*0.4)!important;color:var(--text-soft);margin-top:2px}
+.tsec{background:var(--card);border:1.5px solid var(--card-border);border-radius:13px;overflow:hidden;margin-bottom:calc(var(--font-size-base)*0.6);box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.thead{padding:calc(var(--font-size-base) * 0.7) calc(var(--font-size-base) * 0.8);display:flex;justify-content:space-between;align-items:center;background:var(--gradient);color:#fff;cursor:pointer;user-select:none}
+.thead-left{display:flex;align-items:center;gap:calc(var(--font-size-base)*0.5)}
+.thead-left b{font-size:calc(var(--font-size-base) * 0.65)!important;font-weight:900}
+.secArrow{font-size:calc(var(--font-size-base)*0.65);background:rgba(255,255,255,.15);width:calc(var(--font-size-base)*1.6);height:calc(var(--font-size-base)*1.6);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.2s}
+.thead-right{display:flex;align-items:center;gap:calc(var(--font-size-base)*0.4)}
+.thead .sum{font-size:calc(var(--font-size-base) * 0.52)!important;font-weight:900;background:rgba(255,255,255,.12);padding:calc(var(--font-size-base)*0.2) calc(var(--font-size-base)*0.6);border-radius:20px}
+.twrap{overflow:hidden;transition:.2s;padding:calc(var(--font-size-base)*0.5)}
+.twrap.hidden{display:none!important}
+.health-bar{height:calc(var(--font-size-base)*0.6);background:var(--bg-soft);border-radius:99px;overflow:hidden;margin-top:calc(var(--font-size-base)*0.5);display:flex}
+.health-fill{height:100%;border-radius:99px;transition:.5s}
+.budget-row{display:flex;justify-content:space-between;align-items:center;padding:calc(var(--font-size-base)*0.5) 0;border-bottom:1px solid var(--bg-soft)}
+.budget-row:last-child{border-bottom:none}
+.budget-bar{height:calc(var(--font-size-base)*0.5);background:var(--bg-soft);border-radius:99px;overflow:hidden;flex:1;margin:0 calc(var(--font-size-base)*0.6)}
+.budget-fill{height:100%;border-radius:99px}
+.flow-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:calc(var(--font-size-base)*0.25);align-items:end;height:calc(var(--font-size-base)*6);margin-top:calc(var(--font-size-base)*0.5)}
+.flow-col{display:flex;flex-direction:column;align-items:center;gap:3px}
+.flow-bar{width:100%;border-radius:calc(var(--font-size-base)*0.3) calc(var(--font-size-base)*0.3) 0 0;min-height:2px}
+.flow-label{font-size:calc(var(--font-size-base)*0.38);color:var(--text-soft);font-weight:800}
+.cat-row{display:flex;align-items:center;gap:calc(var(--font-size-base)*0.5);padding:calc(var(--font-size-base)*0.4) 0}
+.cat-dot{width:calc(var(--font-size-base)*0.6);height:calc(var(--font-size-base)*0.6);border-radius:50%}
+.insight{background:var(--bg-soft);border:1px solid var(--card-border);border-left:3px solid var(--hero);border-radius:8px;padding:calc(var(--font-size-base)*0.6);margin-bottom:calc(var(--font-size-base)*0.4);font-size:calc(var(--font-size-base)*0.55);font-weight:700;line-height:1.4}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:calc(var(--font-size-base)*0.35)}
+.qb{background:var(--bg-soft);border:1.5px solid var(--card-border);border-radius:11px;padding:calc(var(--font-size-base)*0.6) calc(var(--font-size-base)*0.2);text-align:center;cursor:pointer}
+.qb span:first-child{font-size:calc(var(--font-size-base)*1.2)!important;display:block}
+.qb span:last-child{font-size:calc(var(--font-size-base)*0.48)!important;font-weight:800;margin-top:calc(var(--font-size-base)*0.2);display:block;color:var(--text)}
+.row{display:flex;justify-content:space-between;align-items:center;padding:calc(var(--font-size-base)*0.55) 0;border-top:1px solid var(--bg-soft)}
+.row:first-child{border-top:none}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="top"><div><h1>أهلاً يا <span>عمر</span> ✨</h1><div id="clk" class="time" style="display:inline-block;margin-top:3px">--:--</div></div><div style="display:flex;gap:6px;align-items:center"><div id="date" style="font-size:calc(var(--font-size-base)*0.45);color:var(--text-soft)"></div><div class="avatar"><img src="icon_192.png?v=14" alt="Omar"></div></div></div>
+<div class="kpi-grid-4" id="kpiHome"></div>
+<div class="tsec">
+<div class="thead" onclick="toggleSec(this)" data-key="health"><div class="thead-left"><span class="secArrow">▼</span><b>💎 الصحة المالية</b></div><div class="thead-right"><span class="sum" id="healthScore">0%</span></div></div>
+<div class="twrap" id="healthWrap">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<div><b id="healthText" style="font-size:calc(var(--font-size-base)*0.72)">ممتاز</b><div id="healthSub" style="font-size:calc(var(--font-size-base)*0.45);color:var(--text-soft);margin-top:2px">ادخارك هذا الشهر</div></div>
+<div style="font-size:calc(var(--font-size-base)*1.6);font-weight:900" id="healthEmoji">💚</div>
+</div>
+<div class="health-bar"><div id="healthFill" class="health-fill" style="width:0%;background:linear-gradient(90deg,#22c55e,#16a34a)"></div></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px">
+<div style="text-align:center"><small style="font-size:calc(var(--font-size-base)*0.4);color:var(--text-soft)">معدل الادخار</small><b id="saveRate" style="font-size:calc(var(--font-size-base)*0.62);display:block">0%</b></div>
+<div style="text-align:center"><small style="font-size:calc(var(--font-size-base)*0.4);color:var(--text-soft)">مصروف/دخل</small><b id="expRatio" style="font-size:calc(var(--font-size-base)*0.62);display:block">0%</b></div>
+<div style="text-align:center"><small style="font-size:calc(var(--font-size-base)*0.4);color:var(--text-soft)">متبقي</small><b id="remainDays" style="font-size:calc(var(--font-size-base)*0.62);display:block">0 يوم</b></div>
+</div>
+</div>
+</div>
+<div class="tsec">
+<div class="thead" onclick="toggleSec(this)" data-key="flow"><div class="thead-left"><span class="secArrow">▼</span><b>📊 التدفق النقدي - 7 أيام</b></div><div class="thead-right"><span class="sum" id="flowSum">0</span></div></div>
+<div class="twrap"><div class="flow-grid" id="flowGrid"></div><div style="display:flex;gap:12px;margin-top:8px;justify-content:center"><div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;background:#22c55e;border-radius:50%"></div><small style="font-size:calc(var(--font-size-base)*0.42)">دخل</small></div><div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;background:#ef4444;border-radius:50%"></div><small style="font-size:calc(var(--font-size-base)*0.42)">مصروف</small></div></div></div>
+</div>
+<div class="tsec">
+<div class="thead" onclick="toggleSec(this)" data-key="cats"><div class="thead-left"><span class="secArrow">▼</span><b>🍕 الإنفاق حسب البند</b></div><div class="thead-right"><span class="sum" id="catTotal">0</span></div></div>
+<div class="twrap" id="catsWrap"></div>
+</div>
+<div class="tsec">
+<div class="thead" onclick="toggleSec(this)" data-key="budget"><div class="thead-left"><span class="secArrow">▼</span><b>🎯 الميزانية الشهرية</b></div><div class="thead-right"><span class="sum" id="budgetPct">0%</span></div></div>
+<div class="twrap" id="budgetWrap"></div>
+</div>
+<div class="tsec">
+<div class="thead" onclick="toggleSec(this)" data-key="bills"><div class="thead-left"><span class="secArrow">▼</span><b>⏰ الفواتير والثابتة</b></div><div class="thead-right"><span class="sum" id="billsSum">0 ج</span></div></div>
+<div class="twrap" id="billsWrap"></div>
+</div>
+<div class="tsec">
+<div class="thead" onclick="toggleSec(this)" data-key="insights"><div class="thead-left"><span class="secArrow">▼</span><b>💡 رؤى ذكية</b></div><div class="thead-right"><span class="sum">AI</span></div></div>
+<div class="twrap" id="insightsWrap"></div>
+</div>
+<div class="tsec">
+<div class="thead" onclick="toggleSec(this)" data-key="quick"><div class="thead-left"><span class="secArrow">▼</span><b>🚀 دخول سريع</b></div><div class="thead-right"><span class="sum">8</span></div></div>
+<div class="twrap">
+<div class="quick-grid">
+  <div class="qb" onclick="go('home.html',0)"><span>🏠</span><span>الرئيسية</span></div>
+  <div class="qb" onclick="go('daily.html',1)"><span>📒</span><span>اليومية</span></div>
+  <div class="qb" onclick="go('attendance.html',2)"><span>⏱️</span><span>الحضور</span></div>
+  <div class="qb" onclick="go('tasks.html',3)"><span>✅</span><span>المهام</span></div>
+  <div class="qb" onclick="go('daily.html',1)"><span>💸</span><span>مصروف</span></div>
+  <div class="qb" onclick="go('daily.html',1)"><span>💵</span><span>دخل</span></div>
+  <div class="qb" onclick="go('daily.html',1)"><span>🤝</span><span>ديون</span></div>
+  <div class="qb" onclick="go('daily.html',1)"><span>🛡️</span><span>أمانات</span></div>
+</div>
+</div>
+</div>
+<div class="tsec">
+<div class="thead" onclick="toggleSec(this)" data-key="recent"><div class="thead-left"><span class="secArrow">▼</span><b>📋 آخر الحركات</b></div><div class="thead-right"><span class="sum" id="recentCount">0</span><span style="font-size:calc(var(--font-size-base)*0.48);background:#fff;color:var(--hero);padding:3px 8px;border-radius:99px;font-weight:800;cursor:pointer" onclick="event.stopPropagation();go('daily.html',1)">عرض الكل →</span></div></div>
+<div class="twrap"><div id="recent"></div></div>
+</div>
+</div>
+<script>
+let $=id=>document.getElementById(id),fmt=n=>Math.round(n||0).toLocaleString("en-US");
+const GD=()=>({tr:JSON.parse(localStorage.getItem('omar_tx_v3')||'[]'),db:JSON.parse(localStorage.getItem('debts_pro_v2')||'[]'),ta:JSON.parse(localStorage.getItem('tasks_v6')||'[]'),lg:JSON.parse(localStorage.getItem('attendance_log')||'[]'),fixed:JSON.parse(localStorage.getItem('omar_fixed_by_month')||'{}')});
+function go(page, idx){ try{ if(parent && parent.switchPage) parent.switchPage(page, parent.document.querySelectorAll('.nav button')[idx]); else location.href=page; }catch(e){ location.href=page; } }
+function toggleSec(head){
+  let wrap=head.nextElementSibling;
+  if(!wrap) return;
+  let isHidden=wrap.classList.contains('hidden');
+  if(isHidden){ wrap.classList.remove('hidden'); head.querySelector('.secArrow').textContent='▼'; }
+  else { wrap.classList.add('hidden'); head.querySelector('.secArrow').textContent='▲'; }
+  let key=head.dataset.key;
+  if(key){ let c=JSON.parse(localStorage.getItem('omar_home_collapsed')||'{}'); c[key]=!isHidden; localStorage.setItem('omar_home_collapsed',JSON.stringify(c)); }
+}
+function R(){
+  let {tr,db,ta,fixed}=GD();
+  let total=tr.reduce((s,t)=>s+(t.type==='income'?t.amount:-t.amount),0);
+  let y=new Date().getFullYear(),m=new Date().getMonth()+1, today=new Date().toISOString().split('T')[0];
+  let mTr=tr.filter(t=>{try{let d=new Date(t.date);return d.getMonth()+1===m&&d.getFullYear()===y}catch{return false}});
+  let mInc=mTr.filter(t=>t.type==='income').reduce((a,b)=>a+b.amount,0);
+  let mExp=mTr.filter(t=>t.type==='expense').reduce((a,b)=>a+b.amount,0);
+  let curYM=`${y}-${String(m).padStart(2,'0')}`;
+  let fixedSum=0; if(fixed[curYM]) fixedSum=fixed[curYM].reduce((a,b)=>a+Number(b.amount),0);
+  let expTotal=mExp+fixedSum;
+  let net=mInc-expTotal;
+  let saveRate=mInc>0?Math.round((net/mInc)*100):0;
+  let healthPct=Math.max(0,Math.min(100, saveRate+50));
+  document.getElementById('kpiHome').innerHTML=`
+    <div class="stat" onclick="go('daily.html',1)"><small>💰 الرصيد الكلي</small><b>${fmt(total)}</b><div class="sub">${tr.length} حركة</div></div>
+    <div class="stat" onclick="go('daily.html',1)"><small>📈 دخل الشهر</small><b style="color:#22c55e">${fmt(mInc)}</b><div class="sub">${mTr.filter(t=>t.type==='income').length} عملية</div></div>
+    <div class="stat" onclick="go('daily.html',1)"><small>📉 مصروف الشهر</small><b style="color:#ef4444">${fmt(expTotal)}</b><div class="sub">ثابت ${fmt(fixedSum)}</div></div>
+    <div class="stat" onclick="go('daily.html',1)"><small>📊 الصافي</small><b style="color:${net>=0?'#22c55e':'#ef4444'}">${fmt(net)}</b><div class="sub">${saveRate}% ادخار</div></div>
+  `;
+  $('healthScore').innerText=healthPct+'%';
+  $('healthFill').style.width=healthPct+'%';
+  $('saveRate').innerText=saveRate+'%';
+  $('expRatio').innerText=(mInc>0?Math.round((expTotal/mInc)*100):0)+'%';
+  let daysLeft=new Date(y,m,0).getDate() - new Date().getDate();
+  $('remainDays').innerText=daysLeft+' يوم';
+  if(healthPct>=80){ $('healthText').innerText='ممتاز جداً'; $('healthEmoji').innerText='💚'; $('healthFill').style.background='linear-gradient(90deg,#22c55e,#16a34a)'; }
+  else if(healthPct>=60){ $('healthText').innerText='جيد'; $('healthEmoji').innerText='💛'; $('healthFill').style.background='linear-gradient(90deg,#eab308,#ca8a04)'; }
+  else { $('healthText').innerText='يحتاج انتباه'; $('healthEmoji').innerText='❤️'; $('healthFill').style.background='linear-gradient(90deg,#ef4444,#dc2626)'; }
+  $('healthSub').innerText=`مصروفك ${fmt(expTotal)} من دخل ${fmt(mInc)}`;
+  let days=[];
+  for(let i=6;i>=0;i--){ let d=new Date(); d.setDate(d.getDate()-i); let ds=d.toISOString().split('T')[0]; let inc=tr.filter(t=>t.date===ds && t.type==='income').reduce((a,b)=>a+b.amount,0); let exp=tr.filter(t=>t.date===ds && t.type==='expense').reduce((a,b)=>a+b.amount,0); days.push({label:d.toLocaleDateString('ar-EG',{weekday:'short'}),inc,exp}); }
+  let maxVal=Math.max(1,...days.map(d=>Math.max(d.inc,d.exp)));
+  $('flowGrid').innerHTML=days.map(d=>`<div class="flow-col"><div style="display:flex;gap:2px;align-items:end;height:100%"><div class="flow-bar" style="background:#22c55e;height:${(d.inc/maxVal)*100}%;width:8px"></div><div class="flow-bar" style="background:#ef4444;height:${(d.exp/maxVal)*100}%;width:8px"></div></div><div class="flow-label">${d.label}</div></div>`).join('');
+  $('flowSum').innerText=fmt(days.reduce((a,b)=>a+b.inc-b.exp,0));
+  let catMap={}; mTr.filter(t=>t.type==='expense').forEach(t=>{ catMap[t.item]=(catMap[t.item]||0)+t.amount; });
+  if(fixed[curYM]) fixed[curYM].forEach(f=>{ catMap[f.name]=(catMap[f.name]||0)+Number(f.amount); });
+  let cats=Object.entries(catMap).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  let catTotal=cats.reduce((a,b)=>a+b[1],0);
+  $('catTotal').innerText=fmt(catTotal);
+  const colors=['#ef4444','#f59e0b','#8b5cf6','#06b6d4','#22c55e'];
+  $('catsWrap').innerHTML=cats.length?cats.map(([name,val],i)=>`<div class="cat-row"><div class="cat-dot" style="background:${colors[i%5]}"></div><div style="flex:1"><div style="display:flex;justify-content:space-between"><b style="font-size:calc(var(--font-size-base)*0.6)">${name}</b><b style="font-size:calc(var(--font-size-base)*0.55)">${fmt(val)}</b></div><div class="health-bar" style="height:4px;margin-top:4px"><div class="health-fill" style="width:${(val/catTotal)*100}%;background:${colors[i%5]}"></div></div></div></div>`).join(''):'<div style="text-align:center;color:var(--text-soft);padding:10px">لا يوجد مصروفات</div>';
+  let budget=50000;
+  let pct=Math.min(100, Math.round((expTotal/budget)*100));
+  $('budgetPct').innerText=pct+'%';
+  $('budgetWrap').innerHTML=`<div class="budget-row"><span style="font-size:calc(var(--font-size-base)*0.6)">الميزانية</span><span style="font-size:calc(var(--font-size-base)*0.55);font-weight:900">${fmt(budget)} ج</span></div><div class="budget-bar"><div class="budget-fill" style="width:${pct}%;background:${pct>90?'#ef4444':pct>70?'#f59e0b':'#22c55e'}"></div></div><div style="display:flex;justify-content:space-between;margin-top:6px"><small style="font-size:calc(var(--font-size-base)*0.42)">مصروف ${fmt(expTotal)}</small><small style="font-size:calc(var(--font-size-base)*0.42)">متبقي ${fmt(budget-expTotal)}</small></div>`;
+  let bills=fixed[curYM]||[];
+  $('billsSum').innerText=fmt(bills.reduce((a,b)=>a+Number(b.amount),0))+' ج';
+  $('billsWrap').innerHTML=bills.length?bills.slice(0,6).map(b=>`<div class="row"><div><b style="font-size:calc(var(--font-size-base)*0.58)">${b.name}</b><div style="font-size:calc(var(--font-size-base)*0.42);color:var(--text-soft)">شهري ثابت</div></div><b>${fmt(b.amount)}</b></div>`).join(''):'<div style="text-align:center;color:var(--text-soft);padding:10px">لا يوجد فواتير ثابتة</div>';
+  let insights=[];
+  if(expTotal>mInc) insights.push(`⚠️ مصروفك أعلى من دخلك هذا الشهر بـ ${fmt(expTotal-mInc)} ج - راجع المصروفات الثابتة`);
+  if(saveRate>=30) insights.push(`✅ ممتاز! بتدخر ${saveRate}% من دخلك - استمر`);
+  else if(saveRate>=0) insights.push(`💡 ادخارك ${saveRate}% فقط - حاول تقلل المصروفات المتغيرة`);
+  if(cats[0]) insights.push(`📌 أكتر بند بيستهلك: ${cats[0][0]} (${fmt(cats[0][1])} ج) - ${Math.round((cats[0][1]/catTotal)*100)}% من مصروفك`);
+  if(daysLeft<=5) insights.push(`⏰ باقي ${daysLeft} أيام على نهاية الشهر - متبقي ${fmt(budget-expTotal)} ج من الميزانية`);
+  if(tr.length===0) insights.push(`👋 ابدأ بإضافة أول مصروف أو دخل عشان تشوف التحليلات`);
+  $('insightsWrap').innerHTML=insights.map(t=>`<div class="insight">${t}</div>`).join('');
+  $('recentCount').innerText=tr.length;
+  $('recent').innerHTML=tr.slice(0,5).map(t=>`<div class="row"><div><b style="font-size:calc(var(--font-size-base)*0.58)">${t.item||t.person||'حركة'}</b><div style="font-size:calc(var(--font-size-base)*0.4);color:var(--text-soft)">${t.date} • ${t.wallet||'كاش'}</div></div><b>${fmt(t.amount)}</b></div>`).join('')||'<div style="text-align:center;color:var(--text-soft);padding:10px">لا يوجد</div>';
+  let coll=JSON.parse(localStorage.getItem('omar_home_collapsed')||'{}');
+  document.querySelectorAll('.thead[data-key]').forEach(h=>{ if(coll[h.dataset.key]){ h.nextElementSibling.classList.add('hidden'); h.querySelector('.secArrow').textContent='▲'; } });
+}
+setInterval(()=>{let now=new Date();let clk=$('clk'); if(clk) clk.innerText=now.toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'});let d=$('date'); if(d) d.innerText=now.toLocaleDateString('ar-EG',{weekday:'short',day:'numeric',month:'short'});},1000);
+R();
+</script>
+</body>
+</html>
