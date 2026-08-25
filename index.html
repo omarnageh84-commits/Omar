@@ -22,164 +22,173 @@
   font-family: "Optimistic Mono", ui-monospace, monospace;
 }
 </style>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Omar</title>
-<link rel="manifest" href="manifest.json">
 <script src="themes32.js?v=32"></script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الإعدادات - Omar v30 PRO</title>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="drive-sync.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f0fdf4;--card:#ffffff;--card-border:#bbf7d0;--text:#14532d;--text-soft:#15803d;--hero:#16a34a}
+:root{--bg:#f0fdf4;--bg-soft:#dcfce7;--card:#ffffff;--card-border:#bbf7d0;--text:#14532d;--text-soft:#15803d;--hero:#16a34a;--gradient:linear-gradient(135deg,#16a34a,#15803d);--font-size-base:13px}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Tajawal',sans-serif}
-html,body{height:100%;width:100%;overflow:hidden;background:var(--bg)}
-body{display:flex;justify-content:center;background:#0f172a}
-.phone{width:100%;max-width:100%;height:100dvh;background:var(--bg);position:relative;display:flex;flex-direction:column;overflow:hidden}
-@media(min-width:500px){body{align-items:center} .phone{max-width:430px;border-left:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}}
-.views{flex:1;position:relative;overflow:hidden;background:var(--bg)}
-.view{position:absolute;inset:0;display:none;flex-direction:column;overflow:hidden;background:var(--bg)}
-.view.active{display:flex}
-.view iframe{flex:1;width:100%;height:100%;border:none;display:block;background:var(--bg)}
-.bottom-nav{height:62px;min-height:62px;background:var(--card);border-top:1.5px solid var(--card-border);display:flex;justify-content:space-around;align-items:center;z-index:99;flex-shrink:0}
-.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;border:none;background:transparent;color:var(--text-soft);font-size:9px;font-weight:800;cursor:pointer;padding:6px 2px}
-.tab-btn.active{color:var(--hero)}
-.tab-btn b{font-size:19px;line-height:1}
+html{font-size:var(--font-size-base);background:var(--bg);color:var(--text);width:100%;height:100%}
+body{background:var(--bg);color:var(--text);width:100%;height:100%;overflow:auto;padding:8px;padding-bottom:80px}
+.top{position:sticky;top:0;z-index:10;background:var(--card);border:1.5px solid var(--card-border);border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.top b{font-size:11px;font-weight:900}
+.top small{background:var(--hero);color:#fff;padding:3px 8px;border-radius:20px;font-size:8px}
+.sec{background:var(--card);border:1.5px solid var(--card-border);border-radius:12px;overflow:hidden;margin-bottom:8px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.sec-head{padding:10px 12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:var(--gradient);color:#fff}
+.sec-head b{font-size:10px;font-weight:900}
+.secArrow{font-size:10px;background:rgba(255,255,255,.2);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.sec-body{padding:8px;display:flex;flex-direction:column;gap:6px}
+.sec-body.hidden{display:none!important}
+.btn{flex:1;border:1.5px solid var(--card-border);background:var(--bg-soft);padding:8px;border-radius:8px;font-size:9px;font-weight:800;cursor:pointer;text-align:center;color:var(--text)}
+.btn.primary{background:var(--hero);color:#fff;border-color:var(--hero)}
+.theme-box{display:flex;align-items:center;gap:6px;background:var(--bg-soft);border:1px solid var(--card-border);border-radius:8px;padding:6px}
+.theme-box button{width:28px;height:28px;border-radius:6px;border:1px solid var(--card-border);background:var(--card);font-weight:900;cursor:pointer}
+.theme-box select{flex:1;border:none;background:transparent;font-size:9px;font-weight:800;outline:none;text-align:center;color:var(--text)}
+.dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--card-border)}
+select,input{width:100%;padding:8px;border:1.5px solid var(--card-border);border-radius:7px;background:var(--bg-soft);color:var(--text);font-size:9px;font-weight:700;outline:none}
+.kv{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--bg-soft);font-size:8px;font-weight:700}
 </style>
 </head>
 <body>
-<div class="phone">
-  <div class="views">
-    <div id="v-home" class="view active"><iframe src="home.html" id="f-home"></iframe></div>
-    <div id="v-daily" class="view"><iframe data-src="daily.html" id="f-daily"></iframe></div>
-    <div id="v-attendance" class="view"><iframe data-src="attendance.html" id="f-att"></iframe></div>
-    <div id="v-tasks" class="view"><iframe data-src="tasks.html" id="f-tasks"></iframe></div>
-    <div id="v-settings" class="view"><iframe data-src="settings.html" id="f-set"></iframe></div>
-  </div>
-  <div class="bottom-nav">
-    <button class="tab-btn active" data-v="home" onclick="go('home')"><b>🏠</b><span>الرئيسية</span></button>
-    <button class="tab-btn" data-v="daily" onclick="go('daily')"><b>📒</b><span>اليومية</span></button>
-    <button class="tab-btn" data-v="attendance" onclick="go('attendance')"><b>⏱️</b><span>الحضور</span></button>
-    <button class="tab-btn" data-v="tasks" onclick="go('tasks')"><b>✅</b><span>المهام</span></button>
-    <button class="tab-btn" data-v="settings" onclick="go('settings')"><b>⚙️</b><span>الإعدادات</span></button>
-  </div>
+<div class="top"><b>⚙️ الإعدادات - Omar v30 PRO - مربوط</b><small id="statusBadge">مربوط كله</small></div>
+
+<div class="sec">
+<div class="sec-head" onclick="toggleSec(this)"><b>🎨 المظهر - 8 ثيمات - تطبق على كل المشروع</b><span class="secArrow">▼</span></div>
+<div class="sec-body">
+<div class="theme-box">
+<button onclick="cycleTheme(-1)">‹</button>
+<div id="curDot" class="dot"></div>
+<select id="themeSelect" onchange="changeTheme(this.value)">
+<option value="forest">🌲 forest - أخضر</option>
+<option value="light">☀️ light - فاتح</option>
+<option value="dark">🌙 dark - غامق</option>
+<option value="material">⚫ material</option>
+<option value="ocean">🌊 ocean</option>
+<option value="rose">🌹 rose</option>
+<option value="midnight">🌌 midnight</option>
+<option value="everforest">🍃 everforest</option>
+</select>
+<button onclick="cycleTheme(1)">›</button>
 </div>
+<div style="display:flex;gap:6px;align-items:center;margin-top:6px;background:var(--bg-soft);border:1px solid var(--card-border);border-radius:8px;padding:6px">
+<span style="font-size:8px">حجم الخط</span>
+<input id="fontSlider" type="range" min="10" max="20" oninput="changeFontSize(this.value)" style="flex:1">
+<b id="fontVal" style="background:var(--hero);color:#fff;padding:2px 8px;border-radius:6px;font-size:8px">13px</b>
+</div>
+<small style="font-size:7px;color:var(--text-soft)">الثيم وحجم الخط يطبق فوراً على: الرئيسية، اليومية، الحضور، المهام</small>
+</div>
+</div>
+
+<div class="sec">
+<div class="sec-head" onclick="toggleSec(this)"><b>☁️ Google Drive - Hybrid JSON</b><span class="secArrow">▼</span></div>
+<div class="sec-body">
+<div style="background:var(--bg-soft);border:1px solid var(--card-border);border-radius:8px;padding:8px">
+<div class="kv"><span>الحالة</span><b id="driveStat">⏳</b></div>
+<div class="kv"><span>آخر مزامنة</span><b id="lastSync">—</b></div>
+</div>
+<div style="display:flex;gap:6px;margin-top:6px">
+<button class="btn primary" onclick="driveSave()">⬆️ رفع الآن</button>
+<button class="btn" onclick="driveLoad()">⬇️ تحميل</button>
+</div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sec-head" onclick="toggleSec(this)"><b>📊 تصدير Excel</b><span class="secArrow">▼</span></div>
+<div class="sec-body">
+<select id="excelType">
+<option value="all">⭐ الكل - 6 شيتات</option>
+<option value="daily">📒 اليومية</option>
+<option value="fixed">📌 الثابتة</option>
+<option value="attendance">⏱️ الحضور</option>
+<option value="tasks">✅ المهام</option>
+</select>
+<button class="btn primary" style="width:100%;padding:10px;margin-top:6px" onclick="exportExcelPro()">📥 تصدير Excel</button>
+<div id="excelPreview" style="font-size:8px;color:var(--text-soft);background:var(--bg-soft);border:1px solid var(--card-border);border-radius:6px;padding:6px;margin-top:4px">📊 جاهز</div>
+</div>
+</div>
+
 <script>
-function ensure(v){
-  var map={home:'f-home',daily:'f-daily',attendance:'f-att',tasks:'f-tasks',settings:'f-set'};
-  var f=document.getElementById(map[v]);
-  if(f && (!f.src || f.src==='about:blank')){
-    var ds=f.getAttribute('data-src');
-    if(ds) f.src=ds;
-  }
+function cycleTheme(d){
+  var keys=Object.keys(window.themes);
+  var cur=localStorage.getItem('omar_theme')||'forest';
+  var idx=keys.indexOf(cur);
+  idx=(idx+d+keys.length)%keys.length;
+  changeTheme(keys[idx]);
 }
-function applyFontToAllIframes(size){
-  var v = parseInt(size)||13;
-  var ids=['f-home','f-daily','f-att','f-tasks','f-set'];
-  ids.forEach(function(id){
-    try{
-      var f=document.getElementById(id);
-      if(!f) return;
-      // Method 1: call function if exists
-      if(f.contentWindow && f.contentWindow.applyFontSize){
-        f.contentWindow.applyFontSize(v);
-      }
-      // Method 2: direct DOM injection (works even if function fails)
-      var doc = f.contentDocument || (f.contentWindow && f.contentWindow.document);
-      if(doc){
-        var html = doc.documentElement;
-        if(html){
-          html.style.setProperty('--font-size-base', v+'px');
-          html.style.fontSize = v+'px';
-        }
-        var body = doc.body;
-        if(body) body.style.fontSize = v+'px';
-        // Inject override style
-        var style = doc.getElementById('omar-font-override');
-        if(!style){
-          style = doc.createElement('style');
-          style.id = 'omar-font-override';
-          if(doc.head) doc.head.appendChild(style);
-          else if(html) html.appendChild(style);
-        }
-        if(style){
-          style.textContent = 'html{font-size:'+v+'px !important;} :root{--font-size-base:'+v+'px !important;} body{font-size:'+v+'px !important;}';
-        }
-      }
-    }catch(e){
-      console.log('apply to iframe '+id+' failed', e.message);
-    }
-  });
-  // Also apply to self
-  if(window.applyFontSize) window.applyFontSize(v);
+function changeTheme(name){
+  if(window.applyTheme) window.applyTheme(name);
+  var sel=document.getElementById('themeSelect'); if(sel) sel.value=name;
+  var dot=document.getElementById('curDot'); if(dot){ var th=window.themes[name]; if(th) dot.style.background=th['--hero']; }
+  // بث للمشروع كله
+  try{ if(window.BroadcastChannel){ var ch=new BroadcastChannel('omar_theme_v28'); ch.postMessage({t:name}); ch.close(); } }catch(e){}
+  try{ if(window.parent && window.parent!==window){ window.parent.postMessage({type:'omar_theme_change', theme:name}, '*'); } }catch(e){}
 }
-function applyThemeToAllIframes(theme){
-  var ids=['f-home','f-daily','f-att','f-tasks','f-set'];
-  ids.forEach(function(id){
-    try{
-      var f=document.getElementById(id);
-      if(f && f.contentWindow && f.contentWindow.applyTheme){
-        f.contentWindow.applyTheme(theme);
-      }
-    }catch(e){}
-  });
-  if(window.applyTheme) window.applyTheme(theme);
-}
-function go(v){
-  document.querySelectorAll('.view').forEach(function(el){ el.classList.remove('active'); });
-  document.getElementById('v-'+v).classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-  document.querySelector('.tab-btn[data-v="'+v+'"]').classList.add('active');
-  localStorage.setItem('omar_last_tab', v);
-  ensure(v);
-  setTimeout(function(){
-    try{
-      var f=document.getElementById({home:'f-home',daily:'f-daily',attendance:'f-att',tasks:'f-tasks',settings:'f-set'}[v]);
-      if(f){
-        var th = localStorage.getItem('omar_theme')||'forest';
-        var fs = localStorage.getItem('omar_font_size')||'13';
-        if(f.contentWindow && f.contentWindow.applyTheme) f.contentWindow.applyTheme(th);
-        if(f.contentWindow && f.contentWindow.applyFontSize) f.contentWindow.applyFontSize(fs);
-        applyFontToAllIframes(fs);
-      }
-    }catch(e){}
-  }, 200);
-}
-window.addEventListener('message', function(e){
-  if(!e.data) return;
-  if(e.data.type==='omar_theme_change'){
-    localStorage.setItem('omar_theme', e.data.theme);
-    localStorage.setItem('omar_theme_trigger', Date.now().toString());
-    applyThemeToAllIframes(e.data.theme);
-  }
-  if(e.data.type==='omar_font_change'){
-    var v = parseInt(e.data.size)||13;
-    localStorage.setItem('omar_font_size', v.toString());
-    localStorage.setItem('omar_font_trigger', Date.now().toString());
-    applyFontToAllIframes(v);
-    try{ if(window.BroadcastChannel){ var ch=new BroadcastChannel('omar_font_v28'); ch.postMessage({size:v}); ch.close(); } }catch(ex){}
-  }
-});
-document.addEventListener('DOMContentLoaded', function(){
-  var last=localStorage.getItem('omar_last_tab')||'home';
-  if(last && last!=='home') go(last);
-  // Initial sync after all iframes load
-  setTimeout(function(){
-    var fs=localStorage.getItem('omar_font_size')||'13';
-    var th=localStorage.getItem('omar_theme')||'forest';
-    applyFontToAllIframes(fs);
-    applyThemeToAllIframes(th);
-  }, 800);
-  if('serviceWorker' in navigator) navigator.serviceWorker.register('service-worker.js');
-});
-// Also poll for font changes in case message fails
-setInterval(function(){
+function changeFontSize(v){
   try{
-    var cur = localStorage.getItem('omar_font_size');
-    var last = window._lastFontSize || '13';
-    if(cur && cur !== last){
-      window._lastFontSize = cur;
-      applyFontToAllIframes(cur);
-    }
+    var vv = parseInt(v)||13;
+    localStorage.setItem('omar_font_size', vv.toString());
+    localStorage.setItem('omar_font_trigger', Date.now().toString());
   }catch(e){}
-}, 400);
+  if(window.applyFontSize) window.applyFontSize(vv);
+  try{ if(window.BroadcastChannel){ var ch=new BroadcastChannel('omar_font_v28'); ch.postMessage({size:parseInt(vv)}); ch.close(); } }catch(e){}
+  try{ if(window.parent && window.parent!==window){ window.parent.postMessage({type:'omar_font_change', size:parseInt(vv)}, '*'); } }catch(e){}
+  try{
+    var style = document.getElementById('omar-font-override');
+    if(!style){ style = document.createElement('style'); style.id = 'omar-font-override'; document.head.appendChild(style); }
+    style.textContent = 'html{font-size:'+vv+'px !important;} :root{--font-size-base:'+vv+'px !important;} body{font-size:'+vv+'px !important;}';
+  }catch(e){}
+  var fv=document.getElementById('fontVal'); if(fv) fv.textContent=vv+'px';
+}
+function toggleSec(head){
+  var wrap=head.nextElementSibling;
+  if(wrap.classList.contains('hidden')){ wrap.classList.remove('hidden'); head.querySelector('.secArrow').textContent='▼'; }
+  else { wrap.classList.add('hidden'); head.querySelector('.secArrow').textContent='▲'; }
+}
+function exportExcelPro(){
+  try{
+    var type=document.getElementById('excelType').value;
+    var wb=XLSX.utils.book_new();
+    function addSheet(name, data){
+      if(!data || data.length===0) data=[['لا يوجد']];
+      var ws=XLSX.utils.aoa_to_sheet(data);
+      XLSX.utils.book_append_sheet(wb, ws, name);
+    }
+    if(type==='daily'||type==='all'){
+      var tx=JSON.parse(localStorage.getItem('omar_tx_v3')||'[]');
+      var d=[['التاريخ','النوع','البند','القيمة']];
+      tx.forEach(function(t){ d.push([t.date,t.type,t.item||t.person,t.amount]); });
+      addSheet('اليومية', d);
+    }
+    if(type==='attendance'||type==='all'){
+      var att=JSON.parse(localStorage.getItem('att_fixed_final')||'{}');
+      var d=[['التاريخ','حضور','انصراف']];
+      Object.keys(att).forEach(function(k){ d.push([k,att[k].in||'',att[k].out||'']); });
+      addSheet('الحضور', d);
+    }
+    if(type==='tasks'||type==='all'){
+      var ts=JSON.parse(localStorage.getItem('tasks_v6')||'[]');
+      var d=[['المهمة','حالة']];
+      ts.forEach(function(t){ d.push([t.text||t.title, t.done?'تم':'باقي']); });
+      addSheet('المهام', d);
+    }
+    XLSX.writeFile(wb, 'Omar-'+type+'-'+new Date().toISOString().slice(0,10)+'.xlsx');
+    document.getElementById('excelPreview').textContent='✅ تم التصدير - '+Object.keys(wb.Sheets).length+' شيتات';
+  }catch(err){ alert('خطأ: '+err.message); }
+}
+document.addEventListener('DOMContentLoaded', function(){
+  var cur=localStorage.getItem('omar_theme')||'forest';
+  var sel=document.getElementById('themeSelect'); if(sel) sel.value=cur;
+  var dot=document.getElementById('curDot'); if(dot){ var th=window.themes[cur]; if(th) dot.style.background=th['--hero']; }
+  var fs=localStorage.getItem('omar_font_size')||'13';
+  var sl=document.getElementById('fontSlider'); if(sl) sl.value=fs;
+  var fv=document.getElementById('fontVal'); if(fv) fv.textContent=fs+'px';
+  try{ document.getElementById('driveStat').textContent=localStorage.getItem('omar_last_sync')||'جاهز'; document.getElementById('lastSync').textContent=localStorage.getItem('omar_last_sync')||'—'; }catch(e){}
+});
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
 </html>
